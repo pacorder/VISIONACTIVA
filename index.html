@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visión Activa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Vista Principal: Menú -->
+    <div id="main-menu" class="screen active">
+        <div class="container">
+            <header>
+                <h1>Visión Activa</h1>
+                <p class="subtitle">Tu entrenador visual diario</p>
+            </header>
+            <main>
+                <div class="exercise-card" data-exercise="focus">
+                    <div class="card-icon">🎯</div>
+                    <h2>Enfoque Lejano-Cercano</h2>
+                    <p>Fortalece el músculo ciliar para mejorar la acomodación.</p>
+                    <span class="card-duration">1 min</span>
+                </div>
+                <div class="exercise-card" data-exercise="figure8">
+                    <div class="card-icon">♾️</div>
+                    <h2>Seguimiento en 8</h2>
+                    <p>Mejora la coordinación y el flujo de los músculos oculares.</p>
+                    <span class="card-duration">1 min</span>
+                </div>
+                <div class="exercise-card" data-exercise="palming">
+                    <div class="card-icon">🙏</div>
+                    <h2>Relajación con Palmeo</h2>
+                    <p>Alivia la tensión y el estrés ocular profundo.</p>
+                    <span class="card-duration">1 min</span>
+                </div>
+                <div class="exercise-card" data-exercise="blinking">
+                    <div class="card-icon">👁️</div>
+                    <h2>Parpadeo Consciente</h2>
+                    <p>Combate la sequedad y la fatiga por pantallas.</p>
+                    <span class="card-duration">1 min</span>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Vista de Ejercicio (Dinámica) -->
+    <div id="exercise-screen" class="screen">
+        <div class="container">
+            <header>
+                <!-- CAMBIO 1: Añadida la clase secondary-btn para el estilo -->
+                <button id="back-btn" class="secondary-btn back-button">← Volver</button>
+                <h1 id="exercise-title">Título del Ejercicio</h1>
+            </header>
+
+            <main id="exercise-area" class="exercise-area">
+                <!-- El contenido visual del ejercicio se inyectará aquí con JS -->
+            </main>
+
+            <section class="controls">
+                <div class="timer-display">
+                    <span id="timer">01:00</span>
+                </div>
+                <div class="buttons">
+                    <button id="startBtn" class="primary-btn">Iniciar</button>
+                    <button id="pauseBtn" class="secondary-btn" disabled>Pausar</button>
+                    <button id="resetBtn" class="secondary-btn">Reiniciar</button>
+                </div>
+            </section>
+
+            <footer>
+                <p id="exercise-footer-text">Instrucción general...</p>
+                <p><small>Esta herramienta es un apoyo. Consulta siempre a un especialista.</small></p>
+            </footer>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

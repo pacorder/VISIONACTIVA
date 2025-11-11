@@ -1,0 +1,286 @@
+/* --- Variables y Configuración Global --- */
+:root {
+    --bg-primary: #0d0d0f;
+    --bg-secondary: #1a1a1d;
+    --bg-card: rgba(255, 255, 255, 0.03);
+    --accent-primary: #00d4ff;
+    --accent-secondary: #00a8cc;
+    --text-primary: #e4e4e7;
+    --text-secondary: #a1a1aa;
+    --border-color: rgba(255, 255, 255, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow: hidden;
+}
+
+/* --- Sistema de Vistas (Pantallas) --- */
+.screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.screen.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.container {
+    width: 90%;
+    max-width: 700px;
+    text-align: center;
+}
+
+/* --- Estilos del Menú Principal --- */
+#main-menu header h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    font-weight: 300;
+    margin-bottom: 3rem;
+}
+
+.exercise-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.exercise-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--accent-primary);
+    box-shadow: 0 20px 40px rgba(0, 212, 255, 0.1);
+}
+
+.card-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.exercise-card h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.exercise-card p {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.card-duration {
+    color: var(--accent-primary);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+/* --- Estilos de la Pantalla de Ejercicio --- */
+.back-button {
+    align-self: flex-start;
+    margin-bottom: 1rem;
+}
+
+#exercise-screen h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+.exercise-area {
+    height: 350px;
+    background: radial-gradient(circle, var(--bg-secondary), var(--bg-primary));
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+    position: relative;
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+}
+
+/* --- Elementos Específicos de Ejercicios --- */
+/* Enfoque */
+#focus-dot {
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, var(--accent-primary), var(--accent-secondary));
+    border-radius: 50%;
+    transition: all 1.8s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 40px var(--accent-primary), 0 0 80px var(--accent-secondary);
+    animation: pulse 2s infinite ease-in-out;
+}
+
+#focus-dot.near {
+    width: 120px;
+    height: 120px;
+    box-shadow: 0 0 60px var(--accent-primary), 0 0 120px var(--accent-secondary);
+}
+
+#focus-dot.far {
+    width: 15px;
+    height: 15px;
+    opacity: 0.7;
+}
+
+/* Seguimiento en 8 */
+/* CAMBIO: Animación completamente nueva y centrada */
+#figure8-dot {
+    width: 30px;
+    height: 30px;
+    background: var(--accent-primary);
+    border-radius: 50%;
+    box-shadow: 0 0 20px var(--accent-primary);
+    position: absolute; /* Necesario para la animación con transform */
+    animation: figure8Track 10s linear infinite;
+}
+
+@keyframes figure8Track {
+    0%   { transform: translate(-120px, 0px); }
+    25%  { transform: translate(0px, -80px); }
+    50%  { transform: translate(120px, 0px); }
+    75%  { transform: translate(0px, 80px); }
+    100% { transform: translate(-120px, 0px); }
+}
+
+/* Palmeo */
+.palming-content {
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    font-weight: 300;
+    animation: fadeIn 2s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Parpadeo */
+#blinking-guide {
+    width: 150px;
+    height: 150px;
+    border: 3px solid var(--accent-primary);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--accent-primary);
+}
+
+#blinking-guide.active {
+    animation: blinkPulse 4s ease-in-out infinite;
+}
+
+@keyframes blinkPulse {
+    0%, 70%, 100% { transform: scale(1); opacity: 0.5; }
+    80%, 90% { transform: scale(1.1); opacity: 1; }
+}
+
+/* --- Animaciones Comunes --- */
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.8; }
+}
+
+/* --- Controles --- */
+.controls {
+    margin-bottom: 2rem;
+}
+
+.timer-display {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.primary-btn, .secondary-btn {
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.primary-btn {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    color: var(--bg-primary);
+}
+
+.primary-btn:hover:not(:disabled) {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 212, 255, 0.3);
+}
+
+.secondary-btn {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+.secondary-btn:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--text-secondary);
+}
+
+button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* --- Footer --- */
+footer {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+footer p {
+    margin-bottom: 0.5rem;
+}
